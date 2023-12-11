@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use DateTime;
+use SVG\Nodes\Texts\SVGText;
+use SVG\SVG;
 
 abstract class Calendar
 {
@@ -26,7 +28,11 @@ abstract class Calendar
 
     public array $dayNamesShort = [];
 
-    abstract function displayMonth(int $month, int $year) : string;
+    abstract function displayMonthHtml(int $month, int $year) : string;
+
+    abstract function displayMonthText(int $month, int $year) : string;
+
+    abstract function displayMonthSvg(SVG $svg, int &$height, int $month, int $year, string $color, string $colorSat, string $colorSun);
 
     public function __construct(string $lang = "vi")
     {
@@ -39,14 +45,40 @@ abstract class Calendar
         }
     }
 
-    function displayCalendar(int $year): string
+    function displayCalendarHtml(int $year): string
     {
         $content = '<h1>Năm ' . $year . '</h1>';
         for ($i = 1; $i <= 12; $i++) {
-            $content .= $this->displayMonth($i, $year);
+            $content .= $this->displayMonthHtml($i, $year);
         }
 
         return $content;
+    }
+
+    function displayCalendarText(int $year): string
+    {
+        $content = "Năm $year". PHP_EOL;
+        for ($i = 1; $i <= 12; $i++) {
+            $content .= $this->displayMonthText($i, $year);
+        }
+
+        return $content;
+    }
+
+    function displayCalendarSvg(int $year, string $color, string $colorSat, string $colorSun): SVG
+    {
+        $image = new SVG(1920, 1920);
+        $doc = $image->getDocument();
+        $height = 40;
+
+        $svg = new SVGText("Năm $year", 0, $height);
+        $svg->setStyle('fill', $color);
+        $doc->addChild($svg);
+        for ($i = 1; $i <= 12; $i++) {
+            $this->displayMonthSvg($image, $height, $i, $year, $color, $colorSat, $colorSun);
+        }
+
+        return $image;
     }
 
     public function getDayName(DateTime $d, bool $shortName = false): string {

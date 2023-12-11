@@ -14,5 +14,7 @@
             "email": "tuan.nguyen@bliksund.com"
         }
     ],
-    "require": {}
+    "require": {
+        "meyfa/php-svg": "^0.14.7"
+    }
 }

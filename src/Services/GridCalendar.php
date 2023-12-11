@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Services\Calendar;
 use DateTime;
+use SVG\SVG;
 
 class GridCalendar extends Calendar
 {
 
-    function displayMonth(int $month, int $year): string
+    function displayMonthHtml(int $month, int $year): string
     {
         $days = $this->getDaysOfMonth($month, $year);
 
@@ -50,5 +50,15 @@ class GridCalendar extends Calendar
         $content .= '</table>';
 
         return $content;
+    }
+
+    function displayMonthText(int $month, int $year): string
+    {
+        // TODO: Implement displayMonthText() method.
+    }
+
+    function displayMonthSvg(SVG $svg, int &$height, int $month, int $year, string $color, string $colorSat, string $colorSun)
+    {
+        // TODO: Implement displayMonthSvg() method.
     }
 }

@@ -11,3 +11,6 @@ Composer Cli
 composer install 
 composer dump-autoload
 ```
+
+Libraries
+- https://github.com/meyfa/php-svg

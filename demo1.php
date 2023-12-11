@@ -50,10 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <hr/>
 
-<?php
-$calendar = (new HorizontalCalendar($lang))->setNameLength($nameLength);
-echo $calendar->displayCalendar($year);
-?>
+<pre>
+    <?php
+    $calendar = (new HorizontalCalendar($lang))->setNameLength($nameLength);
+    echo $calendar->displayCalendarText($year);
+    ?>
+</pre>
 
 </body>
 </html>
