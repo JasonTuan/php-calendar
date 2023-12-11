@@ -1,0 +1,18 @@
+{
+    "name": "tuannguyen/calendar",
+    "description": "Calendar Generate Tools",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jason Tuan Nguyen",
+            "email": "tuan.nguyen@bliksund.com"
+        }
+    ],
+    "require": {}
+}
